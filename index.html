@@ -1,26 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Train Time</title>
-  
-  <!-- Import Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Train Time</title>
 
-  <!-- Import Custom CSS -->
-  <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-  <div class="container">
-    <div class="jumbotron" id="page-header">
-      <h1 class="display-4">Anytime is Train Time</h1>
-      <p class="lead">Choo Choo. Chee Chee.</p>
+    <!-- Import Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
+    <!-- Import Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron mt-3 mb-4 text-white" id="page-header">
+        <h1 class="display-4">Anytime is Train Time</h1>
+        <p class="lead">Choo Choo. Chee Chee.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header text-white" id="content-header">
+          Current Train Schedule
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">Train Name</th>
+                  <th scope="col">Destination</th>
+                  <th scope="col">Frequency (min)</th>
+                  <th scope="col">Next Arrival</th>
+                  <th scope="col">Minutes Away</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Trenton Express</td>
+                  <td>Trenton</td>
+                  <td>25</td>
+                  <td>05:35 PM</td>
+                  <td>10</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="card my-3">
+        <div class="card-header text-white" id="content-header">
+          Add Train
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="form-group">
+              <label for="train-name">Train Name</label>
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                id="train-name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="destination">Destination</label>
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                id="destination"
+              />
+            </div>
+            <div class="form-group">
+              <label for="first-train-time"
+                >First Train Time (HH:mm - military time)
+              </label>
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                id="first-train-time"
+                placeholder="13:00"
+              />
+            </div>
+            <div class="form-group">
+              <label for="frequency">Frequency (min)</label>
+              <input
+                type="number"
+                class="form-control form-control-sm"
+                id="frequency"
+              />
+            </div>
+            <button type="submit" class="btn text-white" id="submit-button">
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
-  </div>
-  <!-- Import Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-</body>
+
+    <!-- Import Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

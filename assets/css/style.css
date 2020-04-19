@@ -4,7 +4,19 @@ body {
 
 #page-header {
   text-align: center;
-  margin: 20px 0 0 0;
-  background-color: #7F462C;
-  color: white;
+  background-color: #7f462c;
+}
+
+#content-header,
+#submit-button {
+  background-color: #337ab7;
+  font-weight: bold;
+}
+
+.table > thead > tr:first-child > th {
+  border: none;
+}
+
+label {
+  font-weight: bold;
 }
