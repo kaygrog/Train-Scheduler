@@ -1,0 +1,33 @@
+JS Pseudocode
+
+1. Upon page load:
+	a. Grab applicable stored data from Firebase and add as rows to table
+		- trainName
+		- destination
+		- frequency
+		- nextArrival
+		- minutesAway
+
+2. Upon button click:
+	a. Calculate nextArrival and minutesAway using firstTrainTime, currentTime, and frequency
+		- If currentTime >= 00:00 && currentTime < firstTrainTime:
+			- nextArrival = firstTrainTime
+			- minutesAway = firstTrainTime - currentTime
+		- If currentTime >= firstTrainTime && currentTime <= 23:59:
+			- nextArrival:
+				- Create loop that adds frequency to firstTrainTime until it surpasses currentTime
+				- Store that time as nextArrival
+			- minutesAway = nextArrival - currentTime
+						
+	b. Store the following in Firebase:
+		- Data that user input into fields:
+			- trainName
+			- destination
+			- firstTrainTime
+			- frequency
+		- nextArrival
+		- minutesAway
+	c. Grab applicable stored data from Firebase and add as a row to table
+
+Extras:
+- Display nextArrival in table as 12-hour time
