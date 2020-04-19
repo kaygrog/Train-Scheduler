@@ -1,10 +1,17 @@
 // Initialize global variables
 var trainName = "";
 var destination = "";
-var firstTrainTime = "";
 var frequency = 0;
-var nextArrival = 0;
 var minutesAway = 0;
+var firstTrainTime = { full: [], hour: 0, minute: 0 };
+var currentTime = { full: [], hour: 0, minute: 0 };
+var nextArrival = {
+  hour: 0,
+  minute: 0,
+  textHour: "",
+  textMinute: "",
+  textFull: "",
+};
 
 var config = {
   apiKey: "AIzaSyBtP6PlYQr14claFa70aCLb2wZXLN3i0FQ",
@@ -36,29 +43,53 @@ document.getElementById("submit-button").onclick = function (event) {
   // Grab user input data
   trainName = document.getElementById("train-name").value;
   destination = document.getElementById("destination").value;
-  firstTrainTime = document.getElementById("first-train-time").value.split(":");
-  frequency = document.getElementById("frequency").value;
+  frequency = Number(document.getElementById("frequency").value);
+  firstTrainTime.full = document
+    .getElementById("first-train-time")
+    .value.split(":");
+  firstTrainTime.hour = Number(firstTrainTime.full[0]);
+  firstTrainTime.minute = Number(firstTrainTime.full[1]);
 
   // Get the currentTime
-  var currentTime = moment().format("hh:mm").split(":");
+  currentTime.full = moment().format("hh:mm").split(":");
+  currentTime.minute = Number(currentTime.full[1]);
+  currentTime.hour = Number(currentTime.full[0]);
 
-  // If the current hour equals the first train time hour
-  if (currentTime[0] === firstTrainTime[0]) {
-    // If the current minute equals or is greater than the first train time minute
-    if (
-      currentTime[1] === firstTrainTime[1] ||
-      currentTime[1] > firstTrainTime[1]
-    ) {
-      calculateNextArrival();
-    } else {
-      nextArrival = firstTrainTime[0] + ":" + firstTrainTime[1];
+  // Format to 24-hour time if currentTime is 1:00 PM or later
+  if (moment().format("a") === "pm" && currentTime.hour !== 12) {
+    currentTime.hour += 12;
+  }
+
+  // Get the # of minutes from 00:00 of currentTime and firstTrainTime for comparison
+  var currentTimeMins = currentTime.hour * 60 + currentTime.minute;
+  var firstTrainTimeMins = firstTrainTime.hour * 60 + firstTrainTime.minute;
+
+  // Calculate nextArrival and minutesAway
+  if (currentTimeMins < firstTrainTimeMins) {
+    nextArrival.textFull =
+      firstTrainTime.full[0] + ":" + firstTrainTime.full[1];
+    minutesAway = firstTrainTimeMins - currentTimeMins;
+  } else if (currentTimeMins >= firstTrainTimeMins) {
+    var countMins = firstTrainTimeMins;
+    while (countMins < currentTimeMins) {
+      countMins += frequency;
     }
+
+    // Convert countMins to HH:mm for nextArrival time
+    nextArrival.hour = Math.floor(countMins / 60);
+    nextArrival.minute = countMins % 60;
+    nextArrival.textHour = nextArrival.hour;
+    nextArrival.textMinute = nextArrival.minute;
+
+    // Add extra 0s to text display of nextArrival time if applicable
+    if (nextArrival.hour < 10) {
+      nextArrival.textHour = "0" + nextArrival.hour;
+    }
+    if (nextArrival.minute < 10) {
+      nextArrival.textMinute = "0" + nextArrival.minute;
+    }
+
+    nextArrival.textFull = nextArrival.textHour + ":" + nextArrival.textMinute;
+    minutesAway = countMins - currentTimeMins;
   }
-
-  if (currentTime[0] < firstTrainTime[0]) {
-  }
-
-  var calculatedTime = currentTime.subtract(1, "hours").format("hh:mm");
-
-  // Calculate nextArrival
 };
