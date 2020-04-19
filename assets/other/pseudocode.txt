@@ -14,7 +14,7 @@ JS Pseudocode
 		- If currentTime >= 00:00 && currentTime < firstTrainTime:
 			- nextArrival = firstTrainTime
 			- minutesAway = firstTrainTime - currentTime
-		- If currentTime >= firstTrainTime && currentTime <= 23:59:
+		- If currentTime <= 23:59 && currentTime >= firstTrainTime:
 			- nextArrival:
 				- Create loop that adds frequency to firstTrainTime until it surpasses currentTime
 				- Store that time as nextArrival

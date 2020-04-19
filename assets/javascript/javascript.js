@@ -36,22 +36,29 @@ document.getElementById("submit-button").onclick = function (event) {
   // Grab user input data
   trainName = document.getElementById("train-name").value;
   destination = document.getElementById("destination").value;
-  firstTrainTime = document.getElementById("first-train-time").value;
+  firstTrainTime = document.getElementById("first-train-time").value.split(":");
   frequency = document.getElementById("frequency").value;
 
   // Get the currentTime
-  var currentTime = new Date(),
-    currentHour =
-      currentTime.getHours() > 12
-        ? currentTime.getHours() - 12
-        : currentTime.getHours() < 10
-        ? "0" + currentTime.getHours()
-        : currentTime.getHours(),
-    currentMinute =
-      currentTime.getMinutes() < 10
-        ? "0" + currentTime.getMinutes()
-        : currentTime.getMinutes();
+  var currentTime = moment().format("hh:mm").split(":");
 
-  var currentTimeDisplay = currentHour + ":" + currentMinute;
-  console.log(currentTimeDisplay);
+  // If the current hour equals the first train time hour
+  if (currentTime[0] === firstTrainTime[0]) {
+    // If the current minute equals or is greater than the first train time minute
+    if (
+      currentTime[1] === firstTrainTime[1] ||
+      currentTime[1] > firstTrainTime[1]
+    ) {
+      calculateNextArrival();
+    } else {
+      nextArrival = firstTrainTime[0] + ":" + firstTrainTime[1];
+    }
+  }
+
+  if (currentTime[0] < firstTrainTime[0]) {
+  }
+
+  var calculatedTime = currentTime.subtract(1, "hours").format("hh:mm");
+
+  // Calculate nextArrival
 };
