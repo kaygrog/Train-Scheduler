@@ -23,7 +23,6 @@ JS Pseudocode
 		- Data that user input into fields:
 			- trainName
 			- destination
-			- firstTrainTime
 			- frequency
 		- nextArrival
 		- minutesAway
